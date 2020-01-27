@@ -18,6 +18,10 @@ import javax.swing.border.EmptyBorder;
 public class MemoryGame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * UI
+	 */
 	private JTextField txtInput;
 	private JLabel lblScore;
 	private JLabel lblNum;
@@ -27,16 +31,17 @@ public class MemoryGame extends JFrame {
 	private JLabel lblLose;
 	private JLabel lblLoseInfo;
 
+	// levels
 	private final int INITIAL_LEVEL = 3;
 	private final int INITIAL_SPEED = 5;
 
-	private int level;
-	private int index;
-	private int speed;
-	private int score;
-	private int record;
-	private String numbers;
-	private Timer timer;
+	private int level; // current level
+	private int index; // current index
+	private int speed; // current speed of digits
+	private int score; // current score
+	private int record; // record of the session
+	private String numbers; // entire number
+	private Timer timer; // timer to run the game
 
 	/**
 	 * Launch the application.
@@ -135,17 +140,23 @@ public class MemoryGame extends JFrame {
 				update();
 			}
 
-		});	
-		
+		});
+
 		setupNumbers();
-		
+
 	}
 
+	/**
+	 * Reset the moving label to a new digit
+	 */
 	private void resetNumberLabel() {
 		lblNum.setText(numbers.substring(index, index + 1)); // first number
 		lblNum.setLocation(-lblNum.getWidth(), lblNum.getY());
 	}
 
+	/**
+	 * Start the game
+	 */
 	private void startGame() {
 		level = INITIAL_LEVEL;
 		speed = INITIAL_LEVEL * INITIAL_SPEED;
@@ -168,6 +179,9 @@ public class MemoryGame extends JFrame {
 		timer.start();
 	}
 
+	/**
+	 * Process to do when the player won a level
+	 */
 	private void win() {
 		score += (level * speed);
 		level++;
@@ -187,6 +201,9 @@ public class MemoryGame extends JFrame {
 		timer.start();
 	}
 
+	/**
+	 * Process to do when the player lost a level
+	 */
 	private void lose() {
 		lblLoseInfo.setText("It was " + numbers);
 		lblLose.setVisible(true);
@@ -199,6 +216,9 @@ public class MemoryGame extends JFrame {
 		btnSubmit.setEnabled(false);
 	}
 
+	/**
+	 * Update the game, as in move the digit and do tests, called by the timer
+	 */
 	private void update() {
 		lblNum.setLocation(lblNum.getX() + speed, lblNum.getY());
 
@@ -216,6 +236,9 @@ public class MemoryGame extends JFrame {
 		}
 	}
 
+	/**
+	 * Setup the digits for the level
+	 */
 	private void setupNumbers() {
 		numbers = "";
 		final int MAX_NUM = 9;
