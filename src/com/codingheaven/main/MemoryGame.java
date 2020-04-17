@@ -57,7 +57,6 @@ public class MemoryGame extends JFrame {
 				}
 			}
 		});
-
 	}
 
 	/**
@@ -96,6 +95,9 @@ public class MemoryGame extends JFrame {
 		contentPane.add(lblNum);
 
 		btnStart = new JButton("Start");
+		/*
+		 * start button action
+		 */
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				startGame();
@@ -105,6 +107,9 @@ public class MemoryGame extends JFrame {
 		contentPane.add(btnStart);
 
 		btnSubmit = new JButton("Submit");
+		/*
+		 * submit button action
+		 */
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSubmit.setEnabled(false);
@@ -133,6 +138,9 @@ public class MemoryGame extends JFrame {
 		lblLoseInfo.setVisible(false);
 		contentPane.add(lblLoseInfo);
 
+		/*
+		 * game timer - updates game
+		 */
 		timer = new Timer(50, new ActionListener() {
 
 			@Override
@@ -143,7 +151,6 @@ public class MemoryGame extends JFrame {
 		});
 
 		setupNumbers();
-
 	}
 
 	/**
@@ -209,7 +216,7 @@ public class MemoryGame extends JFrame {
 		lblLose.setVisible(true);
 		lblLoseInfo.setVisible(true);
 
-		// restart
+		// restart completely
 		btnStart.setText("Restart");
 		btnStart.setEnabled(true);
 		txtInput.setEnabled(false);
